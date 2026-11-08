@@ -8,6 +8,8 @@ The eval is small and it saturates, so read this as a field note from one machin
 
 ## What it does
 
+![Composite score for all 215 runs, colored by eval version: run 9 cut the system prompt to one line and took quality from 73 to 100, the best kept score is 76.20, and no eval v4 run scored above 63.70.](docs/img/score-by-run.svg)
+
 An agent tunes the Ollama inference settings of a local model, one change at a time, while you
 sleep. Each experiment edits one knob in `config.py`, builds an Ollama model from it, runs a
 fixed set of prompts under a five-minute budget, and scores the result. A better score keeps the
@@ -70,6 +72,8 @@ problems), the keep-or-revert bookkeeping in `run.py`, the constraints `program.
 `config.py`, and the numbers this README quotes, read from `RESULTS.md`.
 
 ## How it works
+
+![The experiment loop in five steps: the agent edits one knob in config.py, commits, runs the locked eval, keeps or reverts against the best kept score, and logs the run to results.tsv.](docs/img/loop.svg)
 
 ```
   program.md (the agent's instructions)
